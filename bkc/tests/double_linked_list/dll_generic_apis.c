@@ -28,5 +28,6 @@ int test_dll_create_list() {
 
 int main() {
   ASSERT(test_dll_create_node() == 0, "dll_create_node");
+  ASSERT(test_dll_create_list() == 0, "dll_create_list");
   return 0;
 }
