@@ -3,6 +3,7 @@ Tệp này chứa một số câu lệnh thường dùng
 Câu lệnh biên dịch
 cmake .. -G Ninja
 ninja
+ctest  - Chạy unit tests
 
 Một số câu lệnh hay dùng với git:
 git clone <địa chỉ> - Tạo bản sao
