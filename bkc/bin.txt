@@ -1,0 +1,15 @@
+Tệp này chứa một số câu lệnh thường dùng
+
+Câu lệnh biên dịch
+cmake .. -G Ninja
+ninja
+
+Một số câu lệnh hay dùng với git:
+git clone <địa chỉ> - Tạo bản sao
+git pull - Tải về (thực hiện bên trong thư mục git)
+git add <Danh sách các tệp có thay đổi>
+git commit -m "Thông điệp mô tả các thay đổi"
+git status - (Kiểm tra trạng thái)
+git diff - (Xem các thay đổi)
+git reset HEAD --hard - (!Thận trọng - hủy tất cả các thay đổi)
+git push - Đẩy lên (thưc hiện trong thư mục git)
