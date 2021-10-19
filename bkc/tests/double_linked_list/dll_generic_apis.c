@@ -52,6 +52,10 @@ int test_dll_push_t1() {
     DEBUG_MSG("push_front 2 node");
     return 1;
   }
+  if (list->front->prev != NULL || list->back->next != NULL) {
+    DEBUG_MSG("end condition.");
+    return 1;
+  }
   dll_free_list(list);
   list = dll_create_list();
   n1 = dll_create_node();
@@ -66,6 +70,35 @@ int test_dll_push_t1() {
     DEBUG_MSG("push back 2 nodes");
     return 1;
   }
+  if (list->front->prev != NULL || list->back->next != NULL) {
+    DEBUG_MSG("end condition.");
+    return 1;
+  }
+  return 0;
+}
+
+int test_dll_pop_t1() {
+  dll_t list = dll_create_list();
+  dll_node_t n1 = dll_create_node();
+  dll_node_t n2 = dll_create_node();
+  dll_node_t n3 = dll_create_node();
+  dll_push_back(list, n1);
+  dll_push_back(list, n2);
+  dll_push_back(list, n3);
+  dll_pop_back(list);
+  if (list->front != n1 || list->back != n2) {
+    DEBUG_MSG("pop_back 3 nodes");
+    return 1;
+  }
+  dll_pop_front(list);
+  if (list->front != n2 || list->back != n2) {
+    DEBUG_MSG("pop_front 2 nodes");
+    return 1;
+  }
+  if (list->front->prev != NULL || list->back->next != NULL) {
+    DEBUG_MSG("end condition.");
+    return 1;
+  }
   return 0;
 }
 
@@ -73,5 +106,6 @@ int main() {
   ASSERT(test_dll_create_node() == 0, "dll_create_node");
   ASSERT(test_dll_create_list() == 0, "dll_create_list");
   ASSERT(test_dll_push_t1() == 0, "dll_push_t1");
+  ASSERT(test_dll_pop_t1() == 0, "dll_pop_t1");
   return 0;
 }
