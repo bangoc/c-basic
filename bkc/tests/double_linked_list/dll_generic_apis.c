@@ -104,6 +104,17 @@ int test_dll_pop_t1() {
     DEBUG_MSG("end condition.");
     return 1;
   }
+  dll_pop_front(list);
+  if (list->front != NULL || list->back != NULL) {
+    DEBUG_MSG("pop 1 node => empty");
+    return 1;
+  }
+  dll_pop_back(list);
+  dll_pop_front(list);
+  if (list->front != NULL || list->back != NULL) {
+    DEBUG_MSG("pop no operations on empty list");
+    return 1;
+  }
   return 0;
 }
 
