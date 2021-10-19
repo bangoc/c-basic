@@ -74,6 +74,11 @@ int test_dll_push_t1() {
     DEBUG_MSG("end condition.");
     return 1;
   }
+  if (list->front != n1 || list->front->next != n2 || list->front->next->next != NULL ||
+        list->back != n2 || list->back->prev != n1 || list->back->prev->prev != NULL) {
+    DEBUG_MSG("wrong links");
+    return 1;
+  }
   return 0;
 }
 
