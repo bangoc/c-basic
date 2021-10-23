@@ -186,6 +186,55 @@ int test_dll_length() {
   return 0;
 }
 
+int test_dll_erase() {
+  dll_t list = dll_create_list();
+  dll_node_t n1 = dll_create_node(),
+      n2 = dll_create_node(),
+      n3 = dll_create_node(),
+      n4 = dll_create_node(),
+      n5 = dll_create_node();
+  dll_push_back(list, n1);
+  dll_push_back(list, n2);
+  dll_push_back(list, n3);
+  dll_push_back(list, n4);
+  dll_push_back(list, n5);
+  ASSERT(dll_sequence(list, (dll_node_t[]){n1, n2, n3, n4, n5}, 5), "Init 5 nodes");
+
+  dll_erase(list, n1);
+  ASSERT(dll_sequence(list, (dll_node_t[]){n2, n3, n4, n5}, 4), "Delete n1");
+
+
+  dll_erase(list, n4);
+  ASSERT(dll_sequence(list, (dll_node_t[]){n2, n3, n5}, 3), "Delete n4");
+
+  dll_erase(list, n5);
+  ASSERT(dll_sequence(list, (dll_node_t[]){n2, n3}, 2), "Delete n5");
+
+  dll_erase(list, n2);
+  ASSERT(dll_sequence(list, (dll_node_t[]){n3}, 1), "Delete n2");
+
+  dll_erase(list, n3);
+  ASSERT(dll_is_empty(list), "Delete n3");
+
+  dll_free_list(list);
+}
+
+int test_dll_clear() {
+  dll_t list = dll_create_list();
+  dll_node_t n1 = dll_create_node(),
+      n2 = dll_create_node(),
+      n3 = dll_create_node();
+  dll_push_back(list, n1);
+  dll_push_back(list, n2);
+  dll_push_back(list, n3);
+  ASSERT(dll_sequence(list, (dll_node_t[]){n1, n2, n3}, 3), "Init 3 nodes");
+
+  dll_clear(list);
+  ASSERT(dll_is_empty(list), "should be empty after clear");
+
+  dll_free_list(list);
+}
+
 int main() {
   ASSERT(test_dll_create_node() == 0, "dll_create_node");
   ASSERT(test_dll_create_list() == 0, "dll_create_list");
@@ -195,6 +244,8 @@ int main() {
   ASSERT(test_dll_insert_ab() == 0, "dll_insert_ab");
   ASSERT(test_dll_is_empty() == 0, "dll_is_empty");
   ASSERT(test_dll_length() == 0, "dll_length");
+  ASSERT(test_dll_erase() == 0, "dll_erase");
+  ASSERT(test_dll_clear() == 0, "dll_clear");
   printf("Test Ok!\n");
   return 0;
 }

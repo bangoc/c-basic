@@ -130,3 +130,27 @@ long dll_length(dll_t list) {
   }
   return len;
 }
+
+void dll_erase(dll_t list, dll_node_t pos) {
+  if (pos == list->front) {
+    dll_pop_front(list);
+    return;
+  }
+  if (pos == list->back) {
+    dll_pop_back(list);
+    return;
+  }
+
+  // front < pos < back
+  dll_node_t p1 = pos->prev,
+             p2 = pos->next;
+  p1->next = p2;
+  p2->prev = p1;
+  dll_free_node(pos);
+}
+
+void dll_clear(dll_t list) {
+  while (!dll_is_empty(list)) {
+    dll_pop_front(list);
+  }
+}
