@@ -1,2 +1,5 @@
 add_executable(dll_generic_apis_ut dll_generic_apis.c)
 target_link_libraries(dll_generic_apis_ut bkc)
+
+add_executable(dll_int_apis_ut dll_int_apis.c)
+target_link_libraries(dll_int_apis_ut bkc)

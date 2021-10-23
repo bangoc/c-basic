@@ -9,3 +9,4 @@ add_subdirectory(tests)
 include(CTest)
 
 add_test(NAME DoubleLinkedListGenericAPIs COMMAND dll_generic_apis_ut)
+add_test(NAME DoubleLinkedListIntAPIs COMMAND dll_int_apis_ut)

@@ -41,18 +41,20 @@ void dll_clear(dll_t list);
 
 /* Giao diện cho kiểu int */
 
-typedef struct dll_node_si {
-  dll_node_t base;
+typedef struct dll_node_i_s {
+  struct dll_node_s base;
   int value;
-} *dll_node_ti;
+} *dll_node_i_t;
 
-#define to_dlli(n) ((dll_node_ti)n)
-#define dll_node_i(n) to_dlli(n)->value
+#define to_node_i(n) ((dll_node_i_t)n)
+#define node_i_value(n) to_node_i(n)->value
 
 dll_node_t dll_create_node_i(int value);
-void dll_free_node_i(dll_node_t node);
+
 void dll_push_back_i(dll_t list, int value);
 void dll_push_front_i(dll_t list, int value);
+int dll_pop_back_i(dll_t list);
+int dll_pop_front_i(dll_t list);
 int dll_front_i(dll_t list);
 int dll_back_i(dll_t list);
 dll_node_t dll_inserta_i(dll_t list, dll_node_t pos, int value);
