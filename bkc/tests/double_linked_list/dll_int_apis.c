@@ -55,6 +55,7 @@ int test_dll_insert_abi() {
   dll_inserta_i(list, list->front, 5);
   dll_inserta_i(list, list->back, 6);
   ASSERT(dll_sequence_i(list, (int[]){3, 5, 2, 1, 6}, 5), "intsert ab 5");
+  dll_free_list(list);
   return 0;
 }
 

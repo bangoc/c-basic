@@ -15,6 +15,7 @@ typedef struct dll_node_s {
 typedef struct dll_s {
   dll_node_t front;
   dll_node_t back;
+  void (*fn)();
 } *dll_t;
 
 #define to_dll(n) ((dll_node_t)n)
