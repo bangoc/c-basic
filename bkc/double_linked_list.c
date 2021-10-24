@@ -1,5 +1,6 @@
 #include "double_linked_list.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 
 dll_node_t dll_create_node() {
@@ -156,6 +157,28 @@ void dll_clear(dll_t list) {
   }
 }
 
+void dll_pprint_node(dll_node_t node) {
+  printf("[%p]", node);
+}
+
+static void _dll_pprint_list(dll_t list, void (*ppn)()) {
+  printf("NULL <= ");
+  int first = 1;
+  for (dll_node_t cur = list->front; cur != NULL; cur = cur->next) {
+    if (first) {
+      first = 0;
+    } else {
+      printf(" <==> ");
+    }
+    ppn(cur);
+  }
+  printf(" => NULL\n");
+}
+
+void dll_pprint_list(dll_t list) {
+  _dll_pprint_list(list, dll_pprint_node);
+}
+
 /* Giao diện cho kiểu int */
 
 dll_node_t dll_create_node_i(int value) {
@@ -201,4 +224,13 @@ dll_node_t dll_inserta_i(dll_t list, dll_node_t pos, int value) {
 
 dll_node_t dll_insertb_i(dll_t list, dll_node_t pos, int value) {
   return dll_insertb(list, pos, dll_create_node_i(value));
+}
+
+void dll_pprint_node_i(dll_node_t node) {
+  printf("[%d]", node_i_value(node));
+}
+
+
+void dll_pprint_list_i(dll_t list) {
+  _dll_pprint_list(list, dll_pprint_node_i);
 }

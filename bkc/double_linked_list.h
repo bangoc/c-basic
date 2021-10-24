@@ -40,6 +40,9 @@ long dll_length(dll_t list);
 void dll_erase(dll_t list, dll_node_t pos);
 void dll_clear(dll_t list);
 
+void dll_pprint_node(dll_node_t);
+void dll_pprint_list(dll_t);
+
 /* Giao diện cho kiểu int */
 
 typedef struct dll_node_i_s {
@@ -60,5 +63,8 @@ int dll_front_i(dll_t list);
 int dll_back_i(dll_t list);
 dll_node_t dll_inserta_i(dll_t list, dll_node_t pos, int value);
 dll_node_t dll_insertb_i(dll_t list, dll_node_t pos, int value);
+
+void dll_pprint_node_i(dll_node_t);
+void dll_pprint_list_i(dll_t);
 
 #endif  // DOUBLE_LINKED_LIST_H_
