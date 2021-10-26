@@ -1,0 +1,11 @@
+1. Đọc tệp
+  + Đọc theo dòng
+  + Với 1 dòng - xóa dấu \n (nếu có)
+    và tách thành 2 chuỗi theo *#*,
+    malloc
+
+2. Tạo danh liên kết lưu các bài hát
+  +
+
+3. Nhập stt & truy cập phần tử theo stt
+  + truy cập phần tử theo stt

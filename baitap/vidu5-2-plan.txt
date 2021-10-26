@@ -1,0 +1,4 @@
+1. Đọc nguyên 1 dòng từ stdin
+2. Tách các phần biểu thức
+    - Giữa các toán hạng và toán tử, giữa các toán tử, và giữa các toán hạng được ngăn cách bởi khoảng trắng.
+3. Xử lý từng phần tử với ngăn xếp kiểu double
