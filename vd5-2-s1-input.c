@@ -21,5 +21,6 @@ int main() {
     printf("%s\n", tok);
     tok = strtok(NULL, " ");
   }
+  free(line);
   return 0;
 }

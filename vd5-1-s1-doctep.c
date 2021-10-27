@@ -6,6 +6,7 @@ int main() {
   while (cgetline(&line, 0, inp)) {
     printf("%s", line);
   }
+  free(line);
   fclose(inp);
   return 0;
 }
