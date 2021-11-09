@@ -1,0 +1,10 @@
+1. Kiểm tra một cây nhị phân có phải là cây nhị phân tìm kiếm hay  không.
+
+2. Nút trên gần nhất: Cho hai nút n1 và n2 tìm nút trên chung gần nhất của n1 và n2.
+
+3. Tạo cây nhị phân tìm kiếm với chiều cao tối thiểu từ mảng 1 chiều của các số nguyên đã được sắp xếp theo thứ tự tăng dần.
+
+4. Tính tọa độ theo phương thẳng đứng của 1 nút trong cây nhị phân. Kỹ hiệu x là tọa độ theo phương thẳng đứng, x được định nghĩa như sau:
+- x(root) = 0
+- Cho 1 nút n bất kỳ với l, r là các con trái và con phải của n thì:
+x(l) = x(n) - 1 và x(r) = x(n + 1) nếu các nút khác NULL.
