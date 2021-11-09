@@ -32,5 +32,6 @@ int t1() {
 
 int main() {
   ASSERT(t1() == 0, "t1()");
+  printf("Test ok.\n");
   return 0;
 }
