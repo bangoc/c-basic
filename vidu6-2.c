@@ -6,7 +6,7 @@
   được xuất ra theo thứ tự tăng dần và thứ tự giảm dần.
 */
 
-#include "cgen.ic"
+#include "cgen.h"
 
 int main() {
   bn_tree_t t = bns_create_tree_g(NULL, gtype_cmp_d);
@@ -33,6 +33,6 @@ int main() {
     }
     printf("\n");
   }
-  bn_free_tree(&t);
+  bn_free_tree(t);
   return 0;
 }
