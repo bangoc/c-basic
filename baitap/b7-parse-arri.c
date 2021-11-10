@@ -1,6 +1,6 @@
 #include "baitap7.h"
 
-#include "cgen.ic"
+#include "cgen.h"
 #include "tests/base/utils.h"
 #include "tests/bns/bns_gtype_helper.h"
 

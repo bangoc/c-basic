@@ -1,4 +1,4 @@
-#include "cgen.ic"
+#include "cgen.h"
 
 typedef struct sll_node_ij_s {
   struct sll_node_s base;

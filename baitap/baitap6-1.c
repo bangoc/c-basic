@@ -1,4 +1,4 @@
-#include "cgen.ic"
+#include "cgen.h"
 
 void bn_pprint_node(bn_node_t n) {
   printf("%p\n", n);

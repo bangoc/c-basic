@@ -1,4 +1,4 @@
-#include "cgen.ic"
+#include "cgen.h"
 
 int main() {
   sll_t list = sll_create_list();

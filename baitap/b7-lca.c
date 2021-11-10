@@ -1,6 +1,6 @@
 #include "baitap7.h"
 
-#include "cgen.ic"
+#include "cgen.h"
 #include "tests/base/utils.h"
 
 int t1() {
