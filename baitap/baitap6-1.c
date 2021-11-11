@@ -19,6 +19,6 @@ int main() {
 
   bn_pprint(t, bn_pprint_node);
 
-  bn_free_tree(&t);
+  bn_free_tree(t);
   return 0;
 }
