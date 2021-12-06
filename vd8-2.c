@@ -4,15 +4,6 @@
 
 #include "cgen.h"
 
-int gtype_min_d(gtype v1, gtype v2) {
-  if (v1.d < v2.d) {
-    return 1;
-  } else if (v1.d > v2.d) {
-    return -1;
-  }
-  return 0;
-}
-
 int main(int argc, char *argv[]) {
   if (argc != 3) {
     printf("Usage: ./prog inp.txt 10\n");
@@ -36,7 +27,7 @@ int main(int argc, char *argv[]) {
   }
 
 BENCH("Thời gian tìm top k", 1,
-  p1w_t q = p1w_create(gtype_min_d);
+  p1w_t q = p1w_create(PRIORITY_MIN, gtype_cmp_d);
   double *a = ARR(v);
   for (long i = 0; i < n; ++i) {
     if (i < k) {
