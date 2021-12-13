@@ -1,6 +1,6 @@
 #include "cgen.h"
 #include "ext/io.h"
-#include "vd7-rbm.h"
+#include "vd7-lisa.h"
 
 struct word_tf {
   char *word;
@@ -14,28 +14,26 @@ int word_tf_inc_cmp(const void *p1, const void *p2) {
 
 #define N 10
 
-void b1_parse(FILE *inp, rbm_t words) {
+void b1_parse(FILE *inp, hmap_t words) {
   char buff[1024];
   while (fscanf(inp, "%s", buff) == 1) {
-    // Mẹo: insert -1 để phân biệt nút đã có và nút mới
-    rbm_node_t n = rbm_insert(words, gtype_s(buff), gtype_i(-1));
-    if (n->value.i == -1) {
-      n->key.s = strdup(buff);
-      n->value.i = 1;
+    gtype *value = hmap_value(words, gtype_s(buff));
+    if (value) {
+      ++(value->i);
     } else {
-      n->value.i += 1;
+      hmap_insert(words, gtype_s(strdup(buff)), gtype_i(1));
     }
   }
 }
 
-struct word_tf *b2_order_by_tf(rbm_t words) {
-  long sz = bn_size((bn_tree_t)words);
+struct word_tf *b2_order_by_tf(hmap_t words) {
+  long sz = hmap_nnodes(words);
   printf("Số lượng từ duy nhất = %ld\n", sz);
   struct word_tf *a = malloc(sizeof(struct word_tf) * sz);
   long idx = 0;
-  rbm_traverse(cur, words) {
-    a[idx].word = cur->key.s;
-    a[idx].tf = cur->value.i;
+  hmap_traverse(key, value, words) {
+    a[idx].word = key->s;
+    a[idx].tf = value->i;
     ++idx;
   }
   qsort(a, idx, sizeof(struct word_tf), word_tf_inc_cmp);
@@ -50,16 +48,12 @@ void b3_output(struct word_tf *a, long n) {
 
 void stop_words(const char *fname) {
   FILE *inp = fopen(fname, "r");
-  rbm_t words = rbm_create(gtype_cmp_s);
+  hmap_t words = hmap_create(gtype_hash_s, gtype_cmp_s, gtype_free_s, NULL);
   b1_parse(inp, words);
   fclose(inp);
   struct word_tf *a = b2_order_by_tf(words);
   b3_output(a, N);
 
-  // Giải phóng bộ nhớ
-  rbm_traverse(cur, words) {
-    free(cur->key.s);
-  }
-  rbm_free(words);
+  hmap_free(words);
   free(a);
 }

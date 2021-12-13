@@ -1,4 +1,5 @@
-#include "vd7-rbm.h"
+#include "cgen.h"
+#include "vd7-lisa.h"
 
 #include <stdio.h>
 
@@ -7,6 +8,6 @@ int main(int argc, char *argv[]) {
     printf("Usage: ./prog text/lisa_all_text.txt\n");
     return 1;
   }
-  stop_words(argv[1]);
+  BENCH("Tìm từ dừng", 1, stop_words(argv[1]));
   return 0;
 }
