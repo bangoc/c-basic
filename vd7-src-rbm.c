@@ -17,13 +17,11 @@ int word_tf_inc_cmp(const void *p1, const void *p2) {
 void b1_parse(FILE *inp, rbm_t words) {
   char buff[1024];
   while (fscanf(inp, "%s", buff) == 1) {
-    // Mẹo: insert -1 để phân biệt nút đã có và nút mới
-    rbm_node_t n = rbm_insert(words, gtype_s(buff), gtype_i(-1));
-    if (n->value.i == -1) {
-      n->key.s = strdup(buff);
-      n->value.i = 1;
+    rbm_ires res = rbm_insert(words, gtype_s(buff), gtype_i(1));
+    if (res.inserted) {
+      res.nd->key.s = strdup(buff);
     } else {
-      n->value.i += 1;
+      res.nd->value.i += 1;
     }
   }
 }
@@ -50,7 +48,7 @@ void b3_output(struct word_tf *a, long n) {
 
 void stop_words(const char *fname) {
   FILE *inp = fopen(fname, "r");
-  rbm_t words = rbm_create(gtype_cmp_s);
+  rbm_t words = rbm_create(gtype_cmp_s, gtype_free_s, NULL);
   b1_parse(inp, words);
   fclose(inp);
   struct word_tf *a = b2_order_by_tf(words);

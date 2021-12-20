@@ -17,11 +17,11 @@ int word_tf_inc_cmp(const void *p1, const void *p2) {
 void b1_parse(FILE *inp, hmap_t words) {
   char buff[1024];
   while (fscanf(inp, "%s", buff) == 1) {
-    gtype *value = hmap_value(words, gtype_s(buff));
-    if (value) {
-      ++(value->i);
+    hmap_ires res = hmap_insert(words, gtype_s(buff), gtype_i(1));
+    if (res.inserted) {
+      hmap_key_at(words, res.idx)->s = strdup(buff);
     } else {
-      hmap_insert(words, gtype_s(strdup(buff)), gtype_i(1));
+      hmap_value_at(words, res.idx)->i += 1;
     }
   }
 }

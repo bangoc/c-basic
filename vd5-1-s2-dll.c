@@ -1,12 +1,12 @@
 #include "cgen.h"
 
 int main() {
-  dll_t list = dll_create_list();
-  dll_push_back_i(list, 10);
-  dll_push_back_i(list, 20);
-  dll_push_back_i(list, 30);
-  dll_push_front_i(list, 5);
-  dll_pprint_list_i(list);
-  dll_free_list(list);
+  dll_t list = dll_create();
+  idl_push_back(list, 10);
+  idl_push_back(list, 20);
+  idl_push_back(list, 30);
+  idl_push_back(list, 5);
+  idl_pprint(list);
+  dll_free(list);
   return 0;
 }

@@ -33,11 +33,12 @@ add_executable(vd7-hmap vd7-lisa-main.c vd7-src-hmap.c)
 add_executable(vd7-bench-hmap vd7-bench-main.c vd7-src-hmap.c)
 add_executable(vd8-1 vd8-1.c)
 add_executable(vd8-2 vd8-2.c)
+add_executable(baitap6-1 baitap/baitap6-1.c)
 
 foreach (p vd5-1-s2-dll vd5-1-s2-OOP-Sll
            vd5-1-s2-sll vd5-1-s2-songs
            vd5-2-s2-stack vd6-2 vd7-2
            vd7-rbm vd7-bench-rbm vd7-hmap vd7-bench-hmap
-           vd8-1 vd8-2)
+           vd8-1 vd8-2 baitap6-1)
   target_link_libraries(${p} bkc)
 endforeach ()
