@@ -71,28 +71,24 @@ void gtype_pprint_song(gtype value) {
 }
 
 void song_list_pprint(gvec_t songs) {
-  gtype *a = gvec_arr(songs);
-  int n = gvec_size(songs);
   for (int i = SONG_NULL + 1; i < SONG_ELEMENTS; ++i) {
     pprint_utf8(field_names[i], field_width[i]);
   }
   printf("\n");
-  for (int i = 0; i < n; ++i) {
-    gtype_pprint_song(a[i]);
+  gvec_traverse(g, songs) {
+    gtype_pprint_song(*g);
   }
 }
 
 void song_list_idx_pprint(gvec_t songs, gvec_t positions) {
-  gtype *a = gvec_arr(positions);
-  int n = gvec_size(positions);
   printf("STT  ");
   for (int i = SONG_NULL + 1; i < SONG_ELEMENTS; ++i) {
     pprint_utf8(field_names[i], field_width[i]);
   }
   printf("\n");
-  for (int i = 0; i < n; ++i) {
-    printf("%3d  ", i + 1);
-    gtype_pprint_song(gvec_elem(songs, a[i].l));
+  gvec_traverse(cur, positions) {
+    printf("%3ld  ", gvec_elem_idx(positions, cur) + 1);
+    gtype_pprint_song(gvec_elem(songs, cur->l));
   }
 }
 
@@ -197,8 +193,6 @@ gvec_t song_filter(gvec_t songs) {
   }
   gvec_qsort(songs, song_cmp[c]);
   gvec_t filtered = gvec_create(10, NULL);
-  gtype *a = gvec_arr(songs);
-  int n = gvec_size(songs);
   char *sub = NULL;
   int year;
   switch (c) {
@@ -214,8 +208,8 @@ gvec_t song_filter(gvec_t songs) {
       clear_stdin();
       break;
   }
-  for (int i = 0; i < n; ++i) {
-    song_t song = (song_t)(a[i].v);
+  gvec_traverse(cur, songs) {
+    song_t song = (song_t)(cur->v);
     int ok = 0;
     switch (c) {
       case SONG_NAME:
@@ -232,7 +226,7 @@ gvec_t song_filter(gvec_t songs) {
         break;
     }
     if (ok) {
-      gvec_append(filtered, gtype_l(i));
+      gvec_append(filtered, gtype_l(gvec_elem_idx(songs, cur)));
     }
   }
   free(sub);
@@ -255,10 +249,8 @@ void save_songs(gvec_t songs, const char *fname) {
     printf("Lỗi mở tệp %s\n", fname);
     return;
   }
-  gtype *a = gvec_arr(songs);
-  int n = gvec_size(songs);
-  for (int i = 0; i < n; ++i) {
-    song_t song = (song_t)(a[i].v);
+  gvec_traverse(cur, songs) {
+    song_t song = (song_t)(cur->v);
     fprintf(f, "%s%s%s%s%s%s%d\n", song->name, field_sep, song->singer,
                   field_sep, song->musician, field_sep, song->year);
   }
