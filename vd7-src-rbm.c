@@ -17,11 +17,11 @@ int word_tf_inc_cmp(const void *p1, const void *p2) {
 void b1_parse(FILE *inp, rbm_t words) {
   char buff[1024];
   while (fscanf(inp, "%s", buff) == 1) {
-    rbm_ires res = rbm_insert(words, gtype_s(buff), gtype_i(1));
+    rbm_ires res = rbm_insert(words, gtype_s(buff), gtype_l(1));
     if (res.inserted) {
       res.nd->key.s = strdup(buff);
     } else {
-      res.nd->value.i += 1;
+      res.nd->value.l += 1;
     }
   }
 }
@@ -33,7 +33,7 @@ struct word_tf *b2_order_by_tf(rbm_t words) {
   long idx = 0;
   rbm_traverse(cur, words) {
     a[idx].word = cur->key.s;
-    a[idx].tf = cur->value.i;
+    a[idx].tf = cur->value.l;
     ++idx;
   }
   qsort(a, idx, sizeof(struct word_tf), word_tf_inc_cmp);

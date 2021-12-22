@@ -4,13 +4,13 @@
 #include "tests/base/utils.h"
 
 int t1() {
-  bn_node_t n1 = bns_create_node_g(gtype_i(1)),
-               n2 = bns_create_node_g(gtype_i(2)),
-               n3 = bns_create_node_g(gtype_i(3)),
-               n5 = bns_create_node_g(gtype_i(5)),
-               n6 = bns_create_node_g(gtype_i(6)),
-               n8 = bns_create_node_g(gtype_i(8)),
-               n9 = bns_create_node_g(gtype_i(9));
+  bn_node_t n1 = bns_create_node_g(gtype_l(1)),
+               n2 = bns_create_node_g(gtype_l(2)),
+               n3 = bns_create_node_g(gtype_l(3)),
+               n5 = bns_create_node_g(gtype_l(5)),
+               n6 = bns_create_node_g(gtype_l(6)),
+               n8 = bns_create_node_g(gtype_l(8)),
+               n9 = bns_create_node_g(gtype_l(9));
 
   bn_tree_t t = bns_create_tree_g(NULL, gtype_cmp_i);
   bn_connect2(n2, left, n1, top);

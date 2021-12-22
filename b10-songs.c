@@ -92,7 +92,7 @@ void song_list_idx_pprint(gvec_t songs, gvec_t positions) {
   printf("\n");
   for (int i = 0; i < n; ++i) {
     printf("%3d  ", i + 1);
-    gtype_pprint_song(gvec_elem(songs, a[i].i));
+    gtype_pprint_song(gvec_elem(songs, a[i].l));
   }
 }
 
@@ -232,7 +232,7 @@ gvec_t song_filter(gvec_t songs) {
         break;
     }
     if (ok) {
-      gvec_append(filtered, gtype_i(i));
+      gvec_append(filtered, gtype_l(i));
     }
   }
   free(sub);
@@ -307,7 +307,7 @@ void song_delete(gvec_t songs, const char *fname) {
   printf("Bạn thực sự muốn xóa bài này? [y/n]: ");
   int choice = tolower(getchar());
   if (choice == 'y') {
-    int real_idx = gvec_elem(positions, idx).i;
+    int real_idx = gvec_elem(positions, idx).l;
     gvec_remove(songs, real_idx);
     save_songs(songs, fname);
     printf("Đã xóa.\n");

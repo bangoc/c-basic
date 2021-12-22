@@ -22,16 +22,16 @@ int main() {
       break;
     }
     char *s = strdup(buff);
-    rbm_ires res = rbm_insert(words, gtype_s(s), gtype_i(1));
+    rbm_ires res = rbm_insert(words, gtype_s(s), gtype_l(1));
      if (!res.inserted) {
-       res.nd->value.i++;
+       res.nd->value.l++;
        free(s);
      }
   } while (1);
   printf("Các từ đã nhập và số lần nhập: \n");
   rbm_traverse(cur, words) {
     printf("%s: %ld\n",
-      rbm_node_key(cur).s, rbm_node_value(cur).i);
+      rbm_node_key(cur).s, rbm_node_value(cur).l);
   }
   rbm_traverse(cur, words) {
     free(rbm_node_key(cur).s);
