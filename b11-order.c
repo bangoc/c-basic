@@ -101,7 +101,7 @@ void create_order(hmap_t products) {
     printf("Nhập vào số lượng: ");
     scanf("%d", &quantity);
     clear_stdin();
-    if (quantity < 0 || quantity >= pp->quantity) {
+    if (quantity <= 0 || quantity > pp->quantity) {
       printf("Số lượng không hợp lệ. \n");
       continue;
     }
