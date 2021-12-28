@@ -1,0 +1,33 @@
+S1. Chuẩn bị: Tải về lời giải đã nộp, giải nén mã nguồn.
+
+S2. Thuyết trình về giải pháp: Các cấu trúc dữ liệu đã sử dụng, các xử lý, tổ chức mã nguồn và cách biên dịch.
+
+S3. Thực hiện chương trình theo kịch bản
+
+Chạy chương trình với tệp inp20k.txt (được cung cấp)
+
+1. Chọn chức năng xem thông tin, nhập t111
+  => t111 xyz 318837 717
+2. Chọn chức năng xem thông tin, nhập t123
+  => Không tìm thấy mặt hàng với mã số t123
+3. Chọn chức năng tạo đơn hàng:
+  Nhập: Mã số: t31   Số lượng: 10
+  => t31 NNLTC 110000 223
+  Nhập: Mã số: t32
+  => Mặt hàng không tồn tại
+  Nhập: Mã số: t33 Số lượng: 100
+  => t33 bjlpzuewelusevclvjiy 81336 3
+  => Không đủ số lượng
+  Nhập: Mã số: t36 Số lượng: 20
+  => t36 Vở-viết 9000 300
+  Nhập: Mã số: t39 Số lượng: 6
+  => t39 Bút-bi 15000 120
+  Nhập: Mã số: STOP
+
+  =>
+  1 NNLTC   110000 10 1100000
+  2 Vở-viết   9000 20  180000
+  2 Bút-bi   15000  6   90000
+  ---------------------------
+           Tổng tiền: 1370000
+4. Thoát chương trình. Kết thúc phần trình bày.
