@@ -24,17 +24,13 @@ int main() {
     char *s = strdup(buff);
     rbm_ires res = rbm_insert(words, gtype_s(s), gtype_l(1));
      if (!res.inserted) {
-       res.nd->value.l++;
+       res.value->l += 1;
        free(s);
      }
   } while (1);
   printf("Các từ đã nhập và số lần nhập: \n");
-  rbm_traverse(cur, words) {
-    printf("%s: %ld\n",
-      rbm_node_key(cur).s, rbm_node_value(cur).l);
-  }
-  rbm_traverse(cur, words) {
-    free(rbm_node_key(cur).s);
+  rbm_traverse(k, v, words) {
+    printf("%s: %ld\n", k->s, v->l);
   }
   rbm_free(words);
   return 0;

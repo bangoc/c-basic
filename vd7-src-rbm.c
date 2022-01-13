@@ -17,11 +17,11 @@ int word_tf_inc_cmp(const void *p1, const void *p2) {
 void b1_parse(FILE *inp, rbm_t words) {
   char buff[1024];
   while (fscanf(inp, "%s", buff) == 1) {
-    rbm_ires res = rbm_insert(words, gtype_s(buff), gtype_l(1));
-    if (res.inserted) {
-      res.nd->key.s = strdup(buff);
-    } else {
-      res.nd->value.l += 1;
+    char *tmp = strdup(buff);
+    rbm_ires res = rbm_insert(words, gtype_s(tmp), gtype_l(1));
+    if (!res.inserted) {
+      free(tmp);
+      res.value->l += 1;
     }
   }
 }
@@ -31,9 +31,9 @@ struct word_tf *b2_order_by_tf(rbm_t words) {
   printf("Số lượng từ duy nhất = %ld\n", sz);
   struct word_tf *a = malloc(sizeof(struct word_tf) * sz);
   long idx = 0;
-  rbm_traverse(cur, words) {
-    a[idx].word = cur->key.s;
-    a[idx].tf = cur->value.l;
+  rbm_traverse(k, v, words) {
+    a[idx].word = k->s;
+    a[idx].tf = v->l;
     ++idx;
   }
   qsort(a, idx, sizeof(struct word_tf), word_tf_inc_cmp);
@@ -53,11 +53,6 @@ void stop_words(const char *fname) {
   fclose(inp);
   struct word_tf *a = b2_order_by_tf(words);
   b3_output(a, N);
-
-  // Giải phóng bộ nhớ
-  rbm_traverse(cur, words) {
-    free(cur->key.s);
-  }
   rbm_free(words);
   free(a);
 }
