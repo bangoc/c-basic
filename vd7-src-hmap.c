@@ -27,7 +27,7 @@ void b1_parse(FILE *inp, hmap_t words) {
 }
 
 struct word_tf *b2_order_by_tf(hmap_t words) {
-  long sz = hmap_nnodes(words);
+  long sz = hmap_size(words);
   printf("Số lượng từ duy nhất = %ld\n", sz);
   struct word_tf *a = malloc(sizeof(struct word_tf) * sz);
   long idx = 0;
