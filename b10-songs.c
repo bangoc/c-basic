@@ -87,7 +87,7 @@ void song_list_idx_pprint(gvec_t songs, gvec_t positions) {
   }
   printf("\n");
   gvec_traverse(cur, positions) {
-    printf("%3ld  ", gvec_elem_idx(positions, cur) + 1);
+    printf("%3ld  ", gvec_idx_of(positions, cur) + 1);
     gtype_pprint_song(gvec_elem(songs, cur->l));
   }
 }
@@ -226,7 +226,7 @@ gvec_t song_filter(gvec_t songs) {
         break;
     }
     if (ok) {
-      gvec_append(filtered, gtype_l(gvec_elem_idx(songs, cur)));
+      gvec_append(filtered, gtype_l(gvec_idx_of(songs, cur)));
     }
   }
   free(sub);
